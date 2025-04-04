@@ -1,11 +1,12 @@
-const express = require('express');
-const app = express();
-const PORT = 3000;
+import express from 'express';
+import analyticsRoutes from './routes/analyticsRoutes.js';
 
-app.get('/', (req, res) => {
-    res.send('Social Media Analytics API is live 🚀');
-});
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(express.json());
+app.use('/', analyticsRoutes);
 
 app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`);
+    console.log(`Server running on http://localhost:${PORT}`);
 });
